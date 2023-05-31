@@ -15,11 +15,14 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
+
+    TextInputLayout passwordLayout;
 
     TextInputEditText editTextEmail, editTextPassword;
     Button buttonLogin;
@@ -50,6 +53,10 @@ public class LoginActivity extends AppCompatActivity {
         buttonLogin = findViewById(R.id.btn_login);
         progressBar = findViewById(R.id.progressBar);
         textView = findViewById(R.id.registerNow);
+
+        passwordLayout = findViewById(R.id.passwordLayout);
+
+        passwordLayout.setPasswordVisibilityToggleEnabled(true);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

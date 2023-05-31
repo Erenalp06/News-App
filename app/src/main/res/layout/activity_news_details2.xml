@@ -29,17 +29,19 @@
                 android:id="@+id/titleTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/newsImageView"
+                android:layout_alignBottom="@+id/newsImageView"
                 android:layout_margin="18dp"
                 android:fontFamily="@font/notoserifbold"
+                android:background="@drawable/transparent_background"
                 android:shadowColor="#80000000"
                 android:shadowDx="2"
                 android:shadowDy="2"
                 android:shadowRadius="3"
                 android:textColor="@color/white"
-                android:textSize="25sp"
+                android:textSize="23sp"
+                android:padding="5dp"
                 android:textStyle="bold"
-                tools:text="News Title" />
+                />
 
 
 

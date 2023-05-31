@@ -278,9 +278,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             return true;
         }else if(item.getItemId() == R.id.changeView){
             if(changeView){
-                item.setIcon(R.drawable.icon1);
+                item.setIcon(R.drawable.icon_change_dark);
             }else{
-                item.setIcon(R.drawable.icon2);
+                item.setIcon(R.drawable.icon_change_dark_2);
             }
             changeView = !changeView;
             newsAdapter.setButtonPressed();
