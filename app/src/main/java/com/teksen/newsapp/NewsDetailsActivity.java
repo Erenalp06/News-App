@@ -140,12 +140,12 @@ public class NewsDetailsActivity extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                // İçeriği göstermek veya başka işlemler yapmak için burayı kullanabilirsiniz
+
                                 System.out.println("ArticleTest: " + finalArticleContent);
 
 
-                                // TTS ile metni parçalara bölme
-                                int maxLength = 2000; // Maksimum karakter sayısı
+
+                                int maxLength = 2000;
                                 int length = finalArticleContent.length();
 
                                 int startIndex = 0;
@@ -155,7 +155,7 @@ public class NewsDetailsActivity extends AppCompatActivity {
                                     if (endIndex >= length) {
                                         endIndex = length;
                                     } else {
-                                        // Sonraki boşluk veya noktalama işaretine kadar olan kısmı al
+
                                         endIndex = finalArticleContent.lastIndexOf(" ", endIndex);
                                         int punctuationIndex = finalArticleContent.indexOf(".", endIndex);
                                         if (punctuationIndex != -1 && punctuationIndex <= endIndex) {
@@ -164,8 +164,6 @@ public class NewsDetailsActivity extends AppCompatActivity {
                                     }
 
                                     String subText = finalArticleContent.substring(startIndex, endIndex);
-                                    // Parçalanmış metni kullanarak istediğiniz işlemi yapabilirsiniz
-                                    // Örneğin, parçalı metni ekrana yazdırabilirsiniz
                                     subText += "...";
                                     contentTextView.setText(subText);
                                     articleContext = subText;
@@ -185,7 +183,7 @@ public class NewsDetailsActivity extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        onBackPressed(); // Geri tuşuna basıldığında geri dön
+        onBackPressed();
         return true;
     }
 

@@ -1,16 +1,14 @@
-<ScrollView
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:fillViewport="true">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical">
 
 
@@ -31,20 +29,20 @@
                 android:id="@+id/titleTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/notoserifbold"
                 android:layout_alignBottom="@id/newsImageView"
-                android:textSize="25sp"
-                android:textColor="@color/white"
-                android:textStyle="bold"
+                android:layout_margin="18dp"
+                android:fontFamily="@font/notoserifbold"
                 android:shadowColor="#80000000"
-                android:layout_margin="10dp"
                 android:shadowDx="2"
                 android:shadowDy="2"
                 android:shadowRadius="3"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold"
                 tools:text="News Title" />
 
 
-            <!-- Diğer bileşenler buraya gelecek -->
+
 
         </RelativeLayout>
 
@@ -55,7 +53,7 @@
             android:layout_marginTop="20dp"
             android:textSize="21sp"
             android:textStyle="normal"
-            android:lineSpacingExtra="8dp"
+            android:lineSpacingExtra="11dp"
             tools:text="News Content" />
 
 

@@ -41,19 +41,12 @@
             android:id="@+id/menu_game"
             android:title="Game"
             android:icon="@drawable/ic_game"/>
+
+        <item
+            android:id="@+id/menu_automobile"
+            android:title="Automobile"
+            android:icon="@drawable/ic_automobile"/>
     </group>
-
-    <item
-        android:title=""
-        android:enabled="false" />
-
-    <item
-        android:title=""
-        android:enabled="false" />
-
-    <item
-        android:title=""
-        android:enabled="false" />
 
     <item
         android:title=""

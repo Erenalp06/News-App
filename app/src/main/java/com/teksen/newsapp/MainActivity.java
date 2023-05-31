@@ -158,10 +158,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        // Seçilen menü öğesinin ID'sini alın
+
         int itemId = item.getItemId();
 
-        // İlgili işlemleri gerçekleştirin
+
         switch (itemId) {
             case R.id.menu_sports:
                 // Spor haberlerine yönlendirme işlemleri
@@ -206,10 +206,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, "Travel News", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.menu_game:
-                // Seyahat haberlerine yönlendirme işlemleri
+                // Oyun haberlerine yönlendirme işlemleri
                 Call<List<NewsDTO>> call7 = theNewsApiService.findNewsByCategoryName("game");
                 callNews(call7, "success sports", "sports response", "sports failure");
                 Toast.makeText(this, "Game News", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.menu_automobile:
+                // Otomobil haberlerine yönlendirme işlemleri
+                Call<List<NewsDTO>> call8 = theNewsApiService.findNewsByCategoryName("automobile");
+                callNews(call8, "success sports", "sports response", "sports failure");
+                Toast.makeText(this, "Automobile News", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.menu_logout:;
                 FirebaseAuth.getInstance().signOut();
@@ -221,7 +227,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         }
 
-        // Drawer'ı kapatın
+
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
