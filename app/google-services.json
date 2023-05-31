@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "276216319910",
+    "project_id": "news-app-33d2a",
+    "storage_bucket": "news-app-33d2a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:276216319910:android:e6afa99777d5203b71c967",
+        "android_client_info": {
+          "package_name": "com.teksen.newsapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBATuOeoUiWpE6Fhb1ydDJdYJH8wvZbfpk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

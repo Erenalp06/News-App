@@ -1,0 +1,75 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/menu_sports"
+            android:title="Sports"
+            android:icon="@drawable/ic_sports"/>
+
+        <item
+            android:id="@+id/menu_health"
+            android:title="Health"
+            android:icon="@drawable/ic_health"/>
+
+        <item
+            android:id="@+id/menu_education"
+            android:title="Education"
+            android:icon="@drawable/ic_education"/>
+
+        <item
+            android:id="@+id/menu_science"
+            android:title="Science"
+            android:icon="@drawable/ic_science"/>
+
+        <item
+            android:id="@+id/menu_technology"
+            android:title="Technology"
+            android:icon="@drawable/ic_technology"/>
+
+        <item
+            android:id="@+id/menu_finance"
+            android:title="Finance/Economy"
+            android:icon="@drawable/ic_finance"/>
+
+        <item
+            android:id="@+id/menu_travel"
+            android:title="Travel"
+            android:icon="@drawable/ic_travel"/>
+
+        <item
+            android:id="@+id/menu_game"
+            android:title="Game"
+            android:icon="@drawable/ic_game"/>
+    </group>
+
+    <item
+        android:title=""
+        android:enabled="false" />
+
+    <item
+        android:title=""
+        android:enabled="false" />
+
+    <item
+        android:title=""
+        android:enabled="false" />
+
+    <item
+        android:title=""
+        android:enabled="false" />
+
+
+
+
+    <item
+        android:id="@+id/menu_email"
+        android:title="Email"
+        android:icon="@drawable/ic_email" />
+
+    <item
+        android:id="@+id/menu_logout"
+        android:title="Logout"
+        android:icon="@drawable/ic_logout" />
+
+</menu>
