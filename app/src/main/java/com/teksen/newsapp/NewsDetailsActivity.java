@@ -18,7 +18,14 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
+import com.teksen.newsapp.dto.FavoriteDTO;
+import com.teksen.newsapp.service.ApiManager;
+import com.teksen.newsapp.service.ApiManagerFavorite;
+import com.teksen.newsapp.service.FavoriteApiService;
+import com.teksen.newsapp.service.NewsApiService;
 import com.teksen.newsapp.service.TTSService;
 
 import org.jsoup.Jsoup;
@@ -30,7 +37,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+
 public class NewsDetailsActivity extends AppCompatActivity {
+
+    private FavoriteApiService theFavoriteApiService;
 
     private TextView titleTextView;
     private TextView contentTextView;
@@ -46,10 +60,27 @@ public class NewsDetailsActivity extends AppCompatActivity {
 
     private String newsDTOContent;
 
+    private NewsDTO newsDTOFavorite;
+
+    FirebaseAuth auth;
+    FirebaseUser user;
+
+    String email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_details2);
+
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
+
+        if(user == null){
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }else{
+            email = user.getEmail();
+        }
 
         ttsService = new TTSService(this);
 
@@ -74,6 +105,7 @@ public class NewsDetailsActivity extends AppCompatActivity {
         if (intent != null && intent.hasExtra("news")) {
             NewsDTO newsDTO = intent.getParcelableExtra("news");
             if (newsDTO != null) {
+                newsDTOFavorite = newsDTO;
                 // Haber verilerini ilgili bileşenlere ayarla
                 titleTextView.setText(newsDTO.getTitle());
                 contentTextView.setText(newsDTO.getContent());
@@ -113,6 +145,66 @@ public class NewsDetailsActivity extends AppCompatActivity {
                 }
             }
         }
+
+        Retrofit retrofit = ApiManagerFavorite.getRetrofitInstance();
+
+        theFavoriteApiService = retrofit.create(FavoriteApiService.class);
+
+        Button favoriteButton = findViewById(R.id.favoriteButton);
+        favoriteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FavoriteDTO favoriteDTO = new FavoriteDTO(
+                        newsDTOFavorite.getId(),
+                        email,
+                        newsDTOFavorite.getTitle(),
+                        newsDTOFavorite.getContent(),
+                        newsDTOFavorite.getSourceId(),
+                        newsDTOFavorite.getSourceName(),
+                        newsDTOFavorite.getAuthor(),
+                        newsDTOFavorite.getDescription(),
+                        newsDTOFavorite.getUrl(),
+                        newsDTOFavorite.getImageUrl(),
+                        newsDTOFavorite.getPublishedAt()
+                );
+
+                Call<Boolean> call = theFavoriteApiService.checkNewsForFavorite(favoriteDTO);
+                call.enqueue(new Callback<Boolean>() {
+                    @Override
+                    public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                        boolean isExist = response.body();
+                        if(!isExist){
+                            Call<FavoriteDTO> call1 = theFavoriteApiService.createFavoriteForUser(favoriteDTO);
+                            call1.enqueue(new Callback<FavoriteDTO>() {
+                                @Override
+                                public void onResponse(Call<FavoriteDTO> call, Response<FavoriteDTO> response) {
+                                    Toast.makeText(getApplicationContext(), "Added to favourites", Toast.LENGTH_SHORT).show();
+                                    favoriteButton.setEnabled(false);
+                                }
+
+                                @Override
+                                public void onFailure(Call<FavoriteDTO> call, Throwable t) {
+                                    Toast.makeText(getApplicationContext(), "Something is wrong!", Toast.LENGTH_SHORT).show();
+
+                                }
+                            });
+                        }else{
+                            Toast.makeText(getApplicationContext(), "Already added to favourites!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Boolean> call, Throwable t) {
+
+                    }
+                });
+
+
+
+            }
+        });
+
+
     }
 
     @Override

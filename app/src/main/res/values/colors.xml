@@ -22,4 +22,6 @@
     <color name="technology">#C57BD8</color>
     <color name="finance">#E1688C</color>
 
+    <color name="favorite">#FFEB3B</color>
+
 </resources>

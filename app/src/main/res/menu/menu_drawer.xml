@@ -59,6 +59,10 @@
         android:id="@+id/menu_email"
         android:title="Email"
         android:icon="@drawable/ic_email" />
+    <item
+        android:id="@+id/menu_favourites"
+        android:title="My Favourites"
+        android:icon="@drawable/ic_favorite" />
 
     <item
         android:id="@+id/menu_logout"

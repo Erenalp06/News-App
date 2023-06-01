@@ -24,6 +24,8 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.teksen.newsapp.service.ApiManager;
+import com.teksen.newsapp.service.ApiManagerFavorite;
+import com.teksen.newsapp.service.FavoriteApiService;
 import com.teksen.newsapp.service.NewsApiService;
 
 import java.util.List;
@@ -36,6 +38,7 @@ import retrofit2.Retrofit;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private NewsApiService theNewsApiService;
+    private FavoriteApiService theFavoriteApiService;
     private RecyclerView recyclerView;
     private NewsAdapter newsAdapter;
 
@@ -93,6 +96,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         recyclerView.setAdapter(newsAdapter);
 
         Retrofit retrofit = ApiManager.getRetrofitInstance();
+        Retrofit retrofit1 = ApiManagerFavorite.getRetrofitInstance();
+
+        theFavoriteApiService = retrofit1.create(FavoriteApiService.class);
 
         theNewsApiService = retrofit.create(NewsApiService.class);
 
@@ -216,6 +222,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Call<List<NewsDTO>> call8 = theNewsApiService.findNewsByCategoryName("automobile");
                 callNews(call8, "success sports", "sports response", "sports failure");
                 Toast.makeText(this, "Automobile News", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.menu_favourites:
+                // Favorilere eklenen haberlere yönlendirme işlemleri
+                Call<List<NewsDTO>> call9 = theFavoriteApiService.getFavoritesByEmail(email);
+                callNews(call9, "success sports", "sports response", "sports failure");
+                Toast.makeText(this, "Favourite News", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.menu_logout:;
                 FirebaseAuth.getInstance().signOut();
