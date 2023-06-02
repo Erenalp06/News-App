@@ -74,9 +74,11 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         holder.titleTextView.setText(newsDTO.getTitle());
         if(!isButtonPressed){
             //holder.contentTextView.setText(newsDTO.getContent());
+            holder.authorTextView.setText(newsDTO.getAuthor());
         }
 
         holder.sourceTextView.setText(newsDTO.getSourceName());
+
 
         String randomColor = colorList.get(position % colorList.size());
         Drawable roundedBackground = createRoundedBackground(randomColor);
@@ -126,12 +128,15 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         ImageView imageView;
         TextView sourceTextView;
 
+        TextView authorTextView;
+
         public NewsViewHolder(@NonNull View itemView) {
             super(itemView);
             titleTextView = itemView.findViewById(R.id.titleTextView);
             contentTextView = itemView.findViewById(R.id.contentTextView);
             imageView = itemView.findViewById(R.id.newsImageView);
             sourceTextView = itemView.findViewById(R.id.sourceTextView);
+            authorTextView = itemView.findViewById(R.id.authorTextView);
         }
     }
 }

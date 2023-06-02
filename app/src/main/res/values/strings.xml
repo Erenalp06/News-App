@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NewsApp</string>
+    <string name="app_name">Briefly</string>
     <string name="open_drawer">Aç</string>
     <string name="close_drawer">Kapat</string>
     <string name="news_image">News Picture</string>
@@ -20,6 +20,9 @@
     <string name="click_to_login">Click to login</string>
     <string name="click_to_register">Click to Register</string>
     <string name="add_to_favorites">Add to Favorites</string>
+    <string name="firstname">Firstname</string>
+    <string name="lastname">Lastname</string>
+    <string name="do_you_have_an_account_log_in">Do you have an account? Log in!</string>
 
 
 </resources>
