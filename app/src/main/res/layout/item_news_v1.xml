@@ -9,11 +9,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="8dp">
+        >
 
         <ImageView
             android:id="@+id/newsImageView"
-            android:layout_width="60dp"
+            android:layout_width="100dp"
             android:layout_height="match_parent"
             android:src="@drawable/boyfight"
             android:scaleType="centerCrop"
@@ -30,6 +30,7 @@
                 android:id="@+id/titleTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/robotoregular"
                 android:textStyle="bold"
                 android:textSize="18sp"
                 android:text="Title" />
@@ -48,10 +49,11 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textStyle="italic"
+                android:fontFamily="@font/robot_italic"
                 android:text="Source"
                 android:textColor="@color/white"
                 android:padding="5dp"
-                android:layout_marginTop="8dp"
+                android:layout_margin="8dp"
                 android:layout_gravity="end"/>
 
         </LinearLayout>

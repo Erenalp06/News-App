@@ -11,11 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +26,8 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.teksen.newsapp.service.ApiManager;
+import com.teksen.newsapp.service.ApiManagerFavorite;
+import com.teksen.newsapp.service.FavoriteApiService;
 import com.teksen.newsapp.service.NewsApiService;
 
 import java.util.List;
@@ -36,6 +40,7 @@ import retrofit2.Retrofit;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private NewsApiService theNewsApiService;
+    private FavoriteApiService theFavoriteApiService;
     private RecyclerView recyclerView;
     private NewsAdapter newsAdapter;
 
@@ -68,9 +73,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         drawerLayout = findViewById(R.id.drawerLayout);
         NavigationView navigationView = findViewById(R.id.navigationView);
-        Menu menu = navigationView.getMenu();
+
+
         navigationView.setNavigationItemSelectedListener(this);
+
+
         navigationView.inflateMenu(R.menu.menu_drawer);
+        Menu menu = navigationView.getMenu();
+
+
+
+
 
 
 
@@ -84,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         emailMenuItem.setTitle(email);
 
 
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
@@ -93,6 +107,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         recyclerView.setAdapter(newsAdapter);
 
         Retrofit retrofit = ApiManager.getRetrofitInstance();
+        Retrofit retrofit1 = ApiManagerFavorite.getRetrofitInstance();
+
+        theFavoriteApiService = retrofit1.create(FavoriteApiService.class);
 
         theNewsApiService = retrofit.create(NewsApiService.class);
 
@@ -102,17 +119,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onResponse(Call<List<NewsDTO>> call, Response<List<NewsDTO>> response) {
                 if(response.isSuccessful()){
                     List<NewsDTO> newsList = response.body();
-                    //newsAdapter.setNewsList(newsList);
-                    System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                    newsAdapter.setNewsList(newsList);
+
                 }else{
-                    System.out.println("Hataaaaaaaaaaaa response");
+
                 }
             }
 
             @Override
             public void onFailure(Call<List<NewsDTO>> call, Throwable t) {
                 t.printStackTrace();
-                System.out.println("Hataaaaaaaaaaaaaaaaa failure");
+
             }
         });
     }
@@ -150,7 +167,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void performSearch(String query) {
-        System.out.println("ARAMA KUTUSUNA YAZILDI : " + query);
         Call<List<NewsDTO>> call = theNewsApiService.findNewsBySearchQuery(query);
         callNews(call, "success sports", "sports response", "sports failure");
         Toast.makeText(this, query + " News", Toast.LENGTH_SHORT).show();
@@ -158,58 +174,80 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        // Seçilen menü öğesinin ID'sini alın
+
         int itemId = item.getItemId();
 
-        // İlgili işlemleri gerçekleştirin
+
         switch (itemId) {
             case R.id.menu_sports:
                 // Spor haberlerine yönlendirme işlemleri
+                recyclerView.scrollToPosition(0);
                 Call<List<NewsDTO>> call = theNewsApiService.findNewsByCategoryName("sports");
                 callNews(call, "success sports", "sports response", "sports failure");
                 Toast.makeText(this, "Sports News", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.menu_health:
                 // Sağlık haberlerine yönlendirme işlemleri
+                recyclerView.scrollToPosition(0);
                 Call<List<NewsDTO>> call1 = theNewsApiService.findNewsByCategoryName("health");
                 callNews(call1, "success health", "health response", "health failure");
                 Toast.makeText(this, "Health News", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.menu_education:
                 // Eğitim haberlerine yönlendirme işlemleri
+                recyclerView.scrollToPosition(0);
                 Call<List<NewsDTO>> call2 = theNewsApiService.findNewsByCategoryName("education");
                 callNews(call2, "success sports", "sports response", "sports failure");
                 Toast.makeText(this, "Education News", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.menu_science:
                 // Bilim haberlerine yönlendirme işlemleri
+                recyclerView.scrollToPosition(0);
                 Call<List<NewsDTO>> call3 = theNewsApiService.findNewsByCategoryName("science");
                 callNews(call3, "success sports", "sports response", "sports failure");
                 Toast.makeText(this, "Science News", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.menu_technology:
                 // Teknoloji haberlerine yönlendirme işlemleri
+                recyclerView.scrollToPosition(0);
                 Call<List<NewsDTO>> call4 = theNewsApiService.findNewsByCategoryName("technology");
                 callNews(call4, "success sports", "sports response", "sports failure");
                 Toast.makeText(this, "Tecnology News", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.menu_finance:
                 // Finans haberlerine yönlendirme işlemleri
+                recyclerView.scrollToPosition(0);
                 Call<List<NewsDTO>> call5 = theNewsApiService.findNewsByCategoryName("finance");
                 callNews(call5, "success sports", "sports response", "sports failure");
                 Toast.makeText(this, "Finance News", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.menu_travel:
                 // Seyahat haberlerine yönlendirme işlemleri
+                recyclerView.scrollToPosition(0);
                 Call<List<NewsDTO>> call6 = theNewsApiService.findNewsByCategoryName("travel");
                 callNews(call6, "success sports", "sports response", "sports failure");
                 Toast.makeText(this, "Travel News", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.menu_game:
-                // Seyahat haberlerine yönlendirme işlemleri
+                // Oyun haberlerine yönlendirme işlemleri
+                recyclerView.scrollToPosition(0);
                 Call<List<NewsDTO>> call7 = theNewsApiService.findNewsByCategoryName("game");
                 callNews(call7, "success sports", "sports response", "sports failure");
                 Toast.makeText(this, "Game News", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.menu_automobile:
+                // Otomobil haberlerine yönlendirme işlemleri
+                recyclerView.scrollToPosition(0);
+                Call<List<NewsDTO>> call8 = theNewsApiService.findNewsByCategoryName("automobile");
+                callNews(call8, "success sports", "sports response", "sports failure");
+                Toast.makeText(this, "Automobile News", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.menu_favourites:
+                recyclerView.scrollToPosition(0);
+                // Favorilere eklenen haberlere yönlendirme işlemleri
+                Call<List<NewsDTO>> call9 = theFavoriteApiService.getFavoritesByEmail(email);
+                callNews(call9, "success sports", "sports response", "sports failure");
+                Toast.makeText(this, "Favourite News", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.menu_logout:;
                 FirebaseAuth.getInstance().signOut();
@@ -221,7 +259,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         }
 
-        // Drawer'ı kapatın
+
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -272,13 +310,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             return true;
         }else if(item.getItemId() == R.id.changeView){
             if(changeView){
-                item.setIcon(R.drawable.icon1);
+                item.setIcon(R.drawable.icon_change_dark);
             }else{
-                item.setIcon(R.drawable.icon2);
+                item.setIcon(R.drawable.icon_change_dark_2);
             }
             changeView = !changeView;
             newsAdapter.setButtonPressed();
-            Toast.makeText(this, "buttona basıldı", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "buttona basıldı", Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
     }

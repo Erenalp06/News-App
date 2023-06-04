@@ -19,7 +19,7 @@
     </style>
 
     <style name="RoundedSquareBottom" parent="">
-        <item name="cornerSizeBottomLeft">20%</item>
+        <item name="cornerSizeBottomLeft">10%</item>
         <item name="cornerSizeBottomRight">10%</item>
         <item name="cornerFamilyBottomLeft">rounded</item>
         <item name="cornerFamilyBottomRight">rounded</item>

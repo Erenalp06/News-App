@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NewsApp</string>
+    <string name="app_name">Briefly</string>
     <string name="open_drawer">Aç</string>
     <string name="close_drawer">Kapat</string>
     <string name="news_image">News Picture</string>
@@ -19,6 +19,23 @@
     <string name="register">Register</string>
     <string name="click_to_login">Click to login</string>
     <string name="click_to_register">Click to Register</string>
+    <string name="add_to_favorites">Add to Favorites</string>
+    <string name="firstname">Firstname</string>
+    <string name="lastname">Lastname</string>
+    <string name="do_you_have_an_account_log_in">Do you have an account? Log in!</string>
+
+    //Headings
+    <string name="heading_one">Quick &amp; Enlighten</string>
+    <string name="heading_two">Auditory</string>
+    <string name="heading_three">Discover</string>
+    <string name="heading_four">Welcome</string>
+
+
+    //Description
+    <string name="desc_one">Stay Informed, Explore the World with News. Get a concise summary of the latest happenings and broaden your horizons with a diverse range of news.</string>
+    <string name="desc_two">Listen to News, Stay Updated Anywhere, Anytime. Experience the convenience of audio news, catch up on headlines while multitasking, and never miss a beat in the fast-paced world.</string>
+    <string name="desc_three">Explore Beyond News, Connect to Relevant Sources of Information. Delve deeper into your interests, access curated content tailored to your preferences, and discover valuable resources for in-depth knowledge.</string>
+    <string name="desc_four">Discover, Engage, Stay Informed: Briefly, Your Gateway to News</string>
 
 
 </resources>

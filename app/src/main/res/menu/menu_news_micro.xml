@@ -5,19 +5,19 @@
     <item
         android:id="@+id/settingsButton"
         android:title="Settings"
-        android:icon="@drawable/ic_microphone"
+        android:icon="@drawable/ic_microphone_dark"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/startButton"
         android:title="Start"
-        android:icon="@drawable/ic_start"
+        android:icon="@drawable/ic_start_dark"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/stopButton"
         android:title="Stop"
-        android:icon="@drawable/ic_stop"
+        android:icon="@drawable/ic_stop_dark"
         app:showAsAction="ifRoom"
         android:visible="false" />
 </menu>
