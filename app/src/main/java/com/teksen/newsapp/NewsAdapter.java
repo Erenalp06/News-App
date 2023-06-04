@@ -45,7 +45,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     public void setButtonPressed() {
         isButtonPressed = !isButtonPressed;
         notifyDataSetChanged();
-        notifyItemRangeChanged(0, newsList.size()); // Yeni satırı ekleyin
+        notifyItemRangeChanged(0, newsList.size());
     }
 
     @Override
@@ -98,7 +98,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(holder.itemView.getContext(), NewsDetailsActivity.class);
-                intent.putExtra("news", newsDTO); // Haberi NewsDetailActivity'ye iletmek için intent'e ekleyebilirsiniz
+                intent.putExtra("news", newsDTO);
                 holder.itemView.getContext().startActivity(intent);
             }
         });

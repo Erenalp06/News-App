@@ -259,7 +259,7 @@ public class NewsDetailsActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.settingsButton) {
-            // Ayarlar düğmesine tıklandığında yapılmasını istediğiniz işlemleri buraya yazın
+
             openSettingsDialog();
             return true;
         }
@@ -319,18 +319,18 @@ public class NewsDetailsActivity extends AppCompatActivity {
         SeekBar pitchSeekBar = view.findViewById(R.id.pitchSeekBar);
         SeekBar speechRateSeekBar = view.findViewById(R.id.speechRateSeekBar);
 
-        // Tamam düğmesine tıklandığında ayarları uygulayın
+
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // Pitch ve speech rate değerlerini alın
+
                 pitch = pitchSeekBar.getProgress() / 10.0f;
                 speechRate = speechRateSeekBar.getProgress() / 10.0f;
 
             }
         });
 
-        // Dialog penceresini gösterin
+
         builder.show();
     }
 

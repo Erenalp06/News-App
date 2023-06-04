@@ -120,16 +120,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if(response.isSuccessful()){
                     List<NewsDTO> newsList = response.body();
                     newsAdapter.setNewsList(newsList);
-                    System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
                 }else{
-                    System.out.println("Hataaaaaaaaaaaa response");
+
                 }
             }
 
             @Override
             public void onFailure(Call<List<NewsDTO>> call, Throwable t) {
                 t.printStackTrace();
-                System.out.println("Hataaaaaaaaaaaaaaaaa failure");
+
             }
         });
     }
@@ -167,7 +167,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void performSearch(String query) {
-        System.out.println("ARAMA KUTUSUNA YAZILDI : " + query);
         Call<List<NewsDTO>> call = theNewsApiService.findNewsBySearchQuery(query);
         callNews(call, "success sports", "sports response", "sports failure");
         Toast.makeText(this, query + " News", Toast.LENGTH_SHORT).show();
@@ -317,7 +316,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
             changeView = !changeView;
             newsAdapter.setButtonPressed();
-            Toast.makeText(this, "buttona basıldı", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "buttona basıldı", Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
     }
