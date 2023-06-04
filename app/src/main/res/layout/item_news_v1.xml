@@ -30,7 +30,7 @@
                 android:id="@+id/titleTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/notoserifbold"
+                android:fontFamily="@font/robotoregular"
                 android:textStyle="bold"
                 android:textSize="18sp"
                 android:text="Title" />
@@ -49,6 +49,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textStyle="italic"
+                android:fontFamily="@font/robot_italic"
                 android:text="Source"
                 android:textColor="@color/white"
                 android:padding="5dp"

@@ -69,7 +69,7 @@ public class NewsDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_news_details2);
+        setContentView(R.layout.activity_news_details3);
 
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
@@ -84,14 +84,14 @@ public class NewsDetailsActivity extends AppCompatActivity {
 
         ttsService = new TTSService(this);
 
-        // ActionBar'ı al
+
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true); // Geri tuşunu göster
 
         }
 
-        // XML dosyasında yer alan bileşenleri eşleştirin
+
         titleTextView = findViewById(R.id.titleTextView);
         contentTextView = findViewById(R.id.contentTextView);
         imageView = findViewById(R.id.newsImageView);
@@ -100,13 +100,13 @@ public class NewsDetailsActivity extends AppCompatActivity {
 
 
 
-        // Intent aracılığıyla haber verilerini al
+
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("news")) {
             NewsDTO newsDTO = intent.getParcelableExtra("news");
             if (newsDTO != null) {
                 newsDTOFavorite = newsDTO;
-                // Haber verilerini ilgili bileşenlere ayarla
+
                 titleTextView.setText(newsDTO.getTitle());
                 contentTextView.setText(newsDTO.getContent());
                 sourceTextView.setText(newsDTO.getSourceName());
@@ -114,7 +114,7 @@ public class NewsDetailsActivity extends AppCompatActivity {
 
                 newsDTOContent = newsDTO.getContent();
 
-                // URL'yi tıklanabilir hale getir
+
                 urlTextView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -223,46 +223,18 @@ public class NewsDetailsActivity extends AppCompatActivity {
                     Element articleElement = doc.select("article").first();
                     if (articleElement != null) {
                         String articleContent = articleElement.text();
-                        articleContent = articleContent.replaceAll("\\s+", " ");
+                        //articleContent = articleContent.replaceAll("\\s+", " ");
 
+                        String finalArticleContent = articleContent.substring(0, Math.min(articleContent.length(), 2000)) + "...";
+                        System.out.println("FinalArticleContent: " + finalArticleContent);
 
-                        // Makale içeriğiyle ilgili işlemleri yapabilirsiniz
-                        String finalArticleContent = articleContent;
-                        System.out.println("FinalArticleContent : " + articleContent);
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-
                                 System.out.println("ArticleTest: " + finalArticleContent);
-
-
-
-                                int maxLength = 2000;
-                                int length = finalArticleContent.length();
-
-                                int startIndex = 0;
-                                int endIndex = maxLength;
-
-                                while (startIndex < length) {
-                                    if (endIndex >= length) {
-                                        endIndex = length;
-                                    } else {
-
-                                        endIndex = finalArticleContent.lastIndexOf(" ", endIndex);
-                                        int punctuationIndex = finalArticleContent.indexOf(".", endIndex);
-                                        if (punctuationIndex != -1 && punctuationIndex <= endIndex) {
-                                            endIndex = punctuationIndex + 1;
-                                        }
-                                    }
-
-                                    String subText = finalArticleContent.substring(startIndex, endIndex);
-                                    subText += "...";
-                                    contentTextView.setText(subText);
-                                    articleContext = subText;
-
-                                    startIndex = endIndex + 1;
-                                    endIndex = startIndex + maxLength;
-                                }
+                                contentTextView.setText(finalArticleContent);
+                                articleContext = finalArticleContent;
+                                System.out.println("subtext: " + finalArticleContent);
                             }
                         });
                     }
@@ -287,7 +259,7 @@ public class NewsDetailsActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.settingsButton) {
-            // Ayarlar düğmesine tıklandığında yapılmasını istediğiniz işlemleri buraya yazın
+
             openSettingsDialog();
             return true;
         }
@@ -347,18 +319,18 @@ public class NewsDetailsActivity extends AppCompatActivity {
         SeekBar pitchSeekBar = view.findViewById(R.id.pitchSeekBar);
         SeekBar speechRateSeekBar = view.findViewById(R.id.speechRateSeekBar);
 
-        // Tamam düğmesine tıklandığında ayarları uygulayın
+
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // Pitch ve speech rate değerlerini alın
+
                 pitch = pitchSeekBar.getProgress() / 10.0f;
                 speechRate = speechRateSeekBar.getProgress() / 10.0f;
 
             }
         });
 
-        // Dialog penceresini gösterin
+
         builder.show();
     }
 

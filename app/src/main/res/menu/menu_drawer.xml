@@ -1,10 +1,20 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:title="Categories"
+        android:enabled="false"
+        android:icon="@drawable/ic_category"
+
+        />
+
 
     <group android:checkableBehavior="single">
 
         <item
             android:id="@+id/menu_sports"
             android:title="Sports"
+
             android:icon="@drawable/ic_sports"/>
 
         <item
@@ -52,8 +62,11 @@
         android:title=""
         android:enabled="false" />
 
-
-
+    <item
+        android:title="Account"
+        android:enabled="false"
+        android:icon="@drawable/ic_account"
+        android:background="@color/color4" />
 
     <item
         android:id="@+id/menu_email"

@@ -45,7 +45,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     public void setButtonPressed() {
         isButtonPressed = !isButtonPressed;
         notifyDataSetChanged();
-        notifyItemRangeChanged(0, newsList.size()); // Yeni satırı ekleyin
+        notifyItemRangeChanged(0, newsList.size());
     }
 
     @Override
@@ -74,9 +74,11 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         holder.titleTextView.setText(newsDTO.getTitle());
         if(!isButtonPressed){
             //holder.contentTextView.setText(newsDTO.getContent());
+            holder.authorTextView.setText(newsDTO.getAuthor());
         }
 
         holder.sourceTextView.setText(newsDTO.getSourceName());
+
 
         String randomColor = colorList.get(position % colorList.size());
         Drawable roundedBackground = createRoundedBackground(randomColor);
@@ -96,7 +98,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(holder.itemView.getContext(), NewsDetailsActivity.class);
-                intent.putExtra("news", newsDTO); // Haberi NewsDetailActivity'ye iletmek için intent'e ekleyebilirsiniz
+                intent.putExtra("news", newsDTO);
                 holder.itemView.getContext().startActivity(intent);
             }
         });
@@ -126,12 +128,15 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         ImageView imageView;
         TextView sourceTextView;
 
+        TextView authorTextView;
+
         public NewsViewHolder(@NonNull View itemView) {
             super(itemView);
             titleTextView = itemView.findViewById(R.id.titleTextView);
             contentTextView = itemView.findViewById(R.id.contentTextView);
             imageView = itemView.findViewById(R.id.newsImageView);
             sourceTextView = itemView.findViewById(R.id.sourceTextView);
+            authorTextView = itemView.findViewById(R.id.authorTextView);
         }
     }
 }
